@@ -8,14 +8,14 @@
   <meta property="og:title" content="홍길동 · 포트폴리오" />
   <meta property="og:description" content="핵심 프로젝트, 경험, 연락처, 이력서" />
   <link rel="icon" href="assets/favicon.svg" />
-  <meta name="theme-color" content="#ffffff" />
+  <meta name="theme-color" content="#1c3d5a" />
   <style>
     :root {
-      --bg: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+      --bg: #ffffff;
       --text: #111111;
-      --muted: #444444;
+      --muted: #666666;
       --line: #e6e6e6;
-      --accent: #ff3366;
+      --accent: #1c3d5a; /* 차분한 남색 */
       --container: 1100px;
     }
     * { box-sizing: border-box; }
@@ -25,69 +25,83 @@
       color: var(--text);
       background: var(--bg);
       font: 16px/1.65 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans KR', Arial, sans-serif;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
     }
+    img { max-width: 100%; height: auto; }
+    a { color: inherit; }
     .wrap { max-width: var(--container); margin: 0 auto; padding: 0 20px; }
 
-    header { position: sticky; top: 0; background: rgba(255,255,255,0.9); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); }
-    nav { height: 60px; display: flex; align-items: center; justify-content: space-between; }
-    nav .brand { font-weight: 900; font-size: 24px; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; }
-    nav .links a { text-decoration: none; margin-left: 18px; font-weight: 500; }
-    nav .links a:hover { color: var(--accent); }
-
-    section { padding: 80px 0; border-bottom: 1px solid rgba(255,255,255,0.3); }
-    h1, h2, h3 { margin: 0 0 16px; }
-
-    .hero { padding: 100px 0; text-align: center; color: #fff; }
-    .hero h1 { font-size: 48px; font-weight: 900; text-shadow: 2px 2px 8px rgba(0,0,0,0.3); }
-    .hero p { font-size: 18px; color: #f5f5f5; }
-    .btn { display: inline-block; margin: 10px; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; }
-    .btn-primary { background: var(--accent); color: #fff; }
-    .btn-secondary { border: 2px solid #fff; color: #fff; }
-
-    .badges { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
-    .badge { padding: 6px 14px; border-radius: 20px; background: rgba(255,255,255,0.2); color: #fff; }
-
-    .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-    .card { background: rgba(255,255,255,0.9); border-radius: 12px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-    .card h3 { margin: 0 0 8px; color: var(--accent); }
-
-    .timeline { list-style: none; padding: 0; }
-    .timeline li { margin-bottom: 12px; color: #fff; font-weight: 500; }
-
-    .contact-box { text-align: center; background: rgba(255,255,255,0.9); padding: 30px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-    .contact-box a { display: block; margin: 8px 0; color: var(--accent); font-weight: 600; font-size: 18px; }
-
-    footer { text-align: center; padding: 30px 0; color: #fff; font-size: 14px; }
-      /* ===== 화려한 배경 & 이름 강조 ===== */
-    /* 배경: 애니메이티드 그라디언트 + 라디얼 글로우 + 노이즈 텍스처 */
-    body::before{content:"";position:fixed;inset:0;z-index:-2;background: radial-gradient(1200px 600px at 10% 10%, rgba(230,57,70,.35), transparent 60%), radial-gradient(800px 500px at 90% 20%, rgba(67,97,238,.28), transparent 60%), radial-gradient(900px 700px at 40% 90%, rgba(242, 148, 125,.25), transparent 60%), linear-gradient(120deg,#f9f9fb,#f5f5ff);} 
-    body::after{content:"";position:fixed;inset:-20%;z-index:-1;background: linear-gradient(45deg,#e63946, #ff8fab, #4361ee, #4cc9f0, #ffd166);filter: blur(60px);opacity:.35;animation: hue 18s linear infinite;} 
-    @keyframes hue{0%{transform:translateY(0)}50%{transform:translateY(-2%) rotate(0.0001deg)}100%{transform:translateY(0)}}
-
-    /* 이름 강조: 그라디언트 텍스트 + 은은한 글로우 */
-    .name-display{font-weight:800;letter-spacing:.4px;font-size:clamp(40px,6vw,64px);line-height:1.1;background:linear-gradient(90deg,#111,#111 30%,#e63946 70%,#4361ee);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 1px 0 rgba(255,255,255,.25);} 
-    .hero-card{backdrop-filter:saturate(150%) blur(4px);background:rgba(255,255,255,.6);border:1px solid var(--line);border-radius:16px;padding:18px;}
-
-    /* 히어로 내부 연락처 바 */
-    .contact-inline{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;align-items:center}
-    .contact-inline a{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--line);border-radius:10px;text-decoration:none;background:#fff}
-    .contact-inline a:hover{border-color:var(--accent);}
-
-
-    /* Skip link for accessibility */
     .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
     .skip-link:focus{position:static;width:auto;height:auto;padding:8px 12px;background:#000;color:#fff;border-radius:8px}
 
-    /* HERO CONTRAST BOOST */
-    .hero .name-display, .hero .lead { text-shadow: 2px 2px 8px rgba(0,0,0,.35); }
-</style>
+    header { position: sticky; top: 0; z-index: 10; background: var(--bg); border-bottom: 1px solid var(--line); }
+    nav { height: 56px; display: flex; align-items: center; justify-content: space-between; }
+    nav .brand { font-weight: 700; letter-spacing: .2px; }
+    nav .links a { text-decoration: none; margin-left: 18px; padding: 6px 2px; border-radius: 6px; }
+    nav .links a:focus, nav .links a:hover { outline: none; color: var(--accent); }
+
+    section { padding: 84px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 72px; }
+    h1, h2, h3 { line-height: 1.25; margin: 0 0 12px; }
+    h1 { font-size: clamp(24px, 3.2vw, 36px); }
+    h2 { font-size: clamp(20px, 2.6vw, 28px); }
+    p.lead { color: var(--muted); margin: 0 0 8px; }
+
+    .hero { padding: 92px 0 84px; display: grid; gap: 20px; place-items: center; text-align: center; }
+    .btn { display: inline-block; text-decoration: none; padding: 10px 16px; border-radius: 10px; border: 1px solid var(--text); transition: transform .05s ease; }
+    .btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .btn:active { transform: translateY(1px); }
+    .btn + .btn { margin-left: 8px; }
+
+    .badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; justify-content:center; }
+    .badge { font-size: 14px; padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; }
+
+    .grid { display: grid; gap: 16px; grid-template-columns: repeat(3, 1fr); }
+    .card { border: 1px solid var(--line); border-radius: 14px; padding: 16px; background: #fff; }
+    .card h3 { margin: 0 0 6px; }
+    .muted { color: var(--muted); }
+    details { margin-top: 8px; }
+    details > summary { cursor: pointer; list-style: none; }
+    details > summary::-webkit-details-marker { display: none; }
+
+    .timeline { list-style: none; padding: 0; margin: 0; }
+    .timeline li { padding: 12px 0; border-top: 1px dashed var(--line); }
+    .timeline li:first-child { border-top: none; }
+
+    .icons { display: inline-flex; gap: 10px; vertical-align: middle; }
+    .icon { width: 22px; height: 22px; }
+    .icon svg { width: 100%; height: 100%; display: block; }
+
+    footer { padding: 28px 0; color: var(--muted); }
+
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+      nav .links a { margin-left: 12px; }
+      section { padding: 72px 0; }
+    }
+
+    @media print {
+      header, footer, .btn { display: none !important; }
+      section { page-break-inside: avoid; border: none; padding: 24px 0; }
+    }
+
+    .profile-pic {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent);
+      box-shadow: 0 4px 12px rgba(0,0,0,.15);
+    }
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#main">본문 바로가기</a>
+
   <header>
     <div class="wrap">
-      <nav>
-        <div class="brand">홍길동</div>
+      <nav aria-label="주요 메뉴">
+        <div class="brand" aria-label="브랜드/이름">홍길동</div>
         <div class="links">
           <a href="#about">About</a>
           <a href="#projects">Projects</a>
@@ -99,81 +113,25 @@
     </div>
   </header>
 
-  <main class="wrap">
+  <main id="main" class="wrap">
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-card">
-        <h1 id="hero-title" class="name-display" aria-label="이름과 한 줄 소개">홍길동 · Backend Engineer</h1>
-        <p class="lead">대규모 트래픽 환경에서 <strong>안정성·성능 최적화</strong>에 강점이 있는 서버 개발자입니다.</p>
-        <div>
-          <a class="btn btn-primary" href="#projects">프로젝트 보기</a>
-          <a class="btn" href="assets/resume.pdf" target="_blank" rel="noopener">이력서 다운로드</a>
-        </div>
-        <!-- 홈 상단에서 바로 연락 가능하도록 인라인 연락처 노출 -->
-        <div class="contact-inline" aria-label="빠른 연락">
-          <a href="mailto:you@example.com" aria-label="이메일 보내기">
-            <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/></svg></span>
-            you@example.com
-          </a>
-          <a href="https://github.com/yourid" target="_blank" rel="noopener" aria-label="GitHub 열기">
-            <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.11.8-.25.8-.56v-2.1c-3.26.71-3.95-1.4-3.95-1.4-.53-1.36-1.3-1.72-1.3-1.72-1.06-.73.08-.72.08-.72 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.74 1.27 3.41.97.11-.76.41-1.27.75-1.56-2.6-.3-5.33-1.3-5.33-5.77 0-1.27.46-2.31 1.2-3.13-.12-.3-.52-1.52.12-3.17 0 0 .98-.32 3.2 1.2a11.1 11.1 0 0 1 5.82 0c2.22-1.52 3.2-1.2 3.2-1.2.64 1.65.24 2.87.12 3.17.74.82 1.2 1.86 1.2 3.13 0 4.48-2.73 5.47-5.34 5.76.42.36.8 1.07.8 2.17v3.22c0 .3.22.67.81.56A11.5 11.5 0 0 0 12 .5Z"/></svg></span>
-            GitHub
-          </a>
-          <a href="https://www.linkedin.com/in/yourid" target="_blank" rel="noopener" aria-label="LinkedIn 열기">
-            <span class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zm7.5 0h3.8v2.2h.05c.53-1 1.83-2.2 3.77-2.2 4.03 0 4.78 2.65 4.78 6.1V24h-4v-7.1c0-1.7-.03-3.9-2.38-3.9-2.38 0-2.75 1.86-2.75 3.78V24h-4V8z"/></svg></span>
-            LinkedIn
-          </a>
-        </div>
+      <img src="assets/profile.jpg" alt="홍길동 프로필 사진" class="profile-pic" />
+      <h1 id="hero-title" class="name-display">홍길동 · Backend Engineer</h1>
+      <p class="lead">대규모 트래픽 환경에서 <strong>안정성·성능 최적화</strong>에 강점이 있는 서버 개발자입니다.</p>
+      <div>
+        <a class="btn btn-primary" href="#projects">프로젝트 보기</a>
+        <a class="btn" href="assets/resume.pdf" target="_blank" rel="noopener">이력서 다운로드</a>
       </div>
-    </section>
-
-    <section id="about">
-      <h2>About</h2>
-      <p>3년차 서버 개발자로, 장애 복구 자동화와 로그 기반 모니터링 구축에 집중해 가용성과 효율을 높였습니다.</p>
-      <div class="badges">
-        <span class="badge">Go</span>
-        <span class="badge">PostgreSQL</span>
-        <span class="badge">AWS</span>
-      </div>
-    </section>
-
-    <section id="projects">
-      <h2>Projects</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>실시간 알림 플랫폼 고도화</h3>
-          <p>재시도 큐 도입 → 지연률 42%↓, 실패율 1.8%→0.3%</p>
-        </div>
-        <div class="card">
-          <h3>데이터 파이프라인 안정화</h3>
-          <p>스케줄러 리팩터링 → 지연 배치 0건 달성</p>
-        </div>
-        <div class="card">
-          <h3>로그 기반 모니터링</h3>
-          <p>MTTR 35% 단축, 경보 노이즈 60%↓</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="exp">
-      <h2>Experience</h2>
-      <ul class="timeline">
-        <li>2023–현재 · ABC Corp · Backend Engineer</li>
-        <li>2021–2023 · XYZ · Software Engineer</li>
-      </ul>
-    </section>
-
-    <section id="contact">
-      <h2>Contact</h2>
-      <div class="contact-box">
-        <a href="mailto:you@example.com">📧 you@example.com</a>
-        <a href="https://github.com/yourid" target="_blank" rel="noopener">🐙 GitHub</a>
-        <a href="https://linkedin.com/in/yourid" target="_blank" rel="noopener">💼 LinkedIn</a>
+      <div class="contact-inline" aria-label="빠른 연락">
+        <a href="mailto:you@example.com">you@example.com</a>
+        <a href="https://github.com/yourid" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/yourid" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </section>
   </main>
 
   <footer>
-    <p>© 2025 홍길동 · Last updated 2025-08</p>
+    <div class="wrap">© 2025 홍길동 · Last updated 2025-08</div>
   </footer>
 </body>
 </html>
